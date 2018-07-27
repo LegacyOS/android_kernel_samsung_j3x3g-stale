@@ -298,12 +298,12 @@ int SM5701_operation_mode_function_control(void)
                 if (led_ready_state == LED_FLASH)
                 {
                         SM5701_set_bstout(SM5701_BSTOUT_VOLTAGE);
-                        SM5701_set_operationmode(SM5701_OPERATIONMODE_OTG_ON_FLASH_ON);
+                        SM5701_set_operationmode(SM5701_OPERATIONMODE_FLASH_ON);
                 }
                 else if (led_ready_state == LED_MOVIE)
                 {
                         SM5701_set_bstout(SM5701_BSTOUT_5P0);
-                        SM5701_set_operationmode(SM5701_OPERATIONMODE_OTG_ON_FLASH_ON);
+                        SM5701_set_operationmode(SM5701_OPERATIONMODE_FLASH_ON);
                 }
                 else if (led_ready_state == LED_DISABLE)
                 {
