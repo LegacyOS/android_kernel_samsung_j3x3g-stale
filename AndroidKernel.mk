@@ -7,7 +7,7 @@ ARCH_ := arm64
 CROSS_COMPILE_ := aarch64-linux-android-
 else
 ARCH_ := arm
-CROSS_COMPILE_ := arm-eabi-
+CROSS_COMPILE_ := ~/arm-eabi-4.8/bin/arm-eabi-
 endif
 
 JOBS := $(shell if [ $(cat /proc/cpuinfo | grep processor | wc -l) -gt 8 ]; then echo 8; else echo 4; fi)

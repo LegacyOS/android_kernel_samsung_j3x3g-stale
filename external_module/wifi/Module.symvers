@@ -1,0 +1,2 @@
+0x8c132c98	wlan_module_exit	/mnt/2b8dabed-819a-4751-8fb4-fe355a7e7dde/Master/android_kernel_samsung_j3x3g_sea/external_module/wifi/sprdwl	EXPORT_SYMBOL_GPL
+0x58236e5a	wlan_module_init	/mnt/2b8dabed-819a-4751-8fb4-fe355a7e7dde/Master/android_kernel_samsung_j3x3g_sea/external_module/wifi/sprdwl	EXPORT_SYMBOL_GPL

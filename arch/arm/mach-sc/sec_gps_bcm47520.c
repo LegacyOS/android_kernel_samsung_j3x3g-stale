@@ -110,7 +110,7 @@ static int __init gps_bcm47520_init(void)
     pr_info("%s\n", __func__);
 
     BUG_ON(!sec_class);
-    gps_dev = device_create(sec_class, NULL, (dev_t)&gps_dev, NULL, "gps");
+    gps_dev = device_create(sec_class, NULL, 0, NULL, "gps");
     BUG_ON(!gps_dev);
 
     root_node = of_find_compatible_node(NULL, NULL, gps_node);
