@@ -312,7 +312,6 @@ enum {
 struct sm5504_status {
 	int cable_type;
 	int id_adc;
-	int control;
 	uint8_t irq_flags[2];
 	uint8_t device_reg[2];
 	/* Processed useful status
@@ -453,7 +452,7 @@ static inline int sm5504_update_regs(sm5504_chip_t *chip)
 			  2, chip->curr_status.device_reg);
 	if (ret < 0)
 	{
-		RTERR("%s line %d : return %d\n", __FUNCTION__,__LINE__,ret);
+                RTERR("%s line %d : return %d\n", __FUNCTION__,__LINE__,ret);
 		return ret;
 	}
 	ret = sm5504_reg_read(chip, chip->adc_reg_addr);
@@ -465,14 +464,7 @@ static inline int sm5504_update_regs(sm5504_chip_t *chip)
 	chip->curr_status.id_adc = ret;
 	/* invalid id value */
 	if (ret >= ARRAY_SIZE(id_to_cable_type_mapping))
-		return -EINVAL;
-	ret = sm5504_reg_read(chip, SM5504_REG_CONTROL);
-	if (ret < 0)
-	{
-		RTERR("%s line %d : return %d\n", __FUNCTION__,__LINE__,ret);
-		return ret;
-	}
-	chip->curr_status.control = ret;
+        return -EINVAL;
 	return 0;
 }
 
@@ -1393,7 +1385,6 @@ static void sm5504_init_regs(sm5504_chip_t *chip)
 	 * to make 1st detection work always report cable type*/
 	chip->curr_status.cable_type = MUIC_SM5504_CABLE_TYPE_INVALID;
 	chip->curr_status.id_adc = 0x1f;
-	chip->curr_status.control = 0xe5;
 	chip->adc_reg_addr = SM5504_REG_ADC;
 
 	/* Only mask Connect */
@@ -1517,10 +1508,6 @@ static ssize_t dev_show(struct device *dev,
 	u8 dev_value_5[] = "CABLE_NONE";
 	u8 dev_value_6[] = "TA";
 	u8 dev_fail = 0;
-
-	RTINFO("Status : ADC = 0x%x, CONT = 0x%x, DEV1 = 0x%x, DEV2 = 0x%x, INTF1 = 0x%x, INTF2 = 0x%x\n",
-			current_status->id_adc, current_status->control, current_status->device_reg[0], current_status->device_reg[1],\
-			current_status->irq_flags[0], current_status->irq_flags[1]);
 
 	if (current_status->cable_type == MUIC_SM5504_CABLE_TYPE_JIG_UART_OFF) {
 		RTINFO("dev_show JIG UART BOOT OFF\n");
